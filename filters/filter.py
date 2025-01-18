@@ -15,7 +15,7 @@ cleaned_events.sort(
     key=lambda event: datetime.strptime(event["Starts"].split(" ")[0], "%Y-%m-%d")
 )
 
-with open("../data/clean_calendar.json", "w") as file:
+with open("../assets/data/clean_calendar.json", "w") as file:
     json.dump(cleaned_events, file, indent=4)
 
 print("Filtered, sorted, and saved to clean_calendar.json.")

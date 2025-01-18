@@ -43,7 +43,7 @@ async function startCountdown(endDate, daysID, hoursID, minutesID, secondsID) {
 
 async function loadCountdowns() {
   try {
-    const response = await fetch("/data/clean_calendar.json");
+    const response = await fetch("/assets/data/clean_calendar.json");
     const calendarData = await response.json();
 
     // Graduation
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", loadCountdowns);
 
 async function loadLatinLunches() {
   try {
-    const response = await fetch("/data/latin_lunch_days.json");
+    const response = await fetch("/assets/data/latin_lunch_days.json");
     const lunches = await response.json();
 
     const currentDate = new Date();
