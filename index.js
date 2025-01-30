@@ -41,6 +41,7 @@ async function startCountdown(endDate, daysID, hoursID, minutesID, secondsID) {
   const countdownInterval = setInterval(updateCountdown, 1000);
 }
 
+//TODO: rewrite this to remove need to pass in all id names
 async function loadCountdowns() {
   try {
     const response = await fetch("/assets/data/clean_calendar.json");

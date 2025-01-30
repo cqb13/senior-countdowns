@@ -1,7 +1,18 @@
+html,
+body {
+  background: rgb(0, 0, 0, 0.1);
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 #title {
@@ -85,6 +96,9 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
 }
 
 a {
@@ -94,13 +108,12 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: #496bbe;
+  color: #7a1c20;
   transition: ease-in-out, 10ms;
 }
 
 #countdown-request {
   display: block;
-  width: 100%;
   text-align: center;
   text-decoration: underline;
   padding: 0.5rem;
