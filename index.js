@@ -154,6 +154,15 @@ async function loadCountdowns() {
     const q4Date = q4Event.Starts;
 
     startCountdown(q4Date, "q4-days", "q4-hours", "q4-minutes", "q4-seconds");
+
+    // Ivy Day
+    startCountdown(
+      "2025-03-26 19:00:00+00:00",
+      "ivy-days",
+      "ivy-hours",
+      "ivy-minutes",
+      "ivy-seconds",
+    );
   } catch (error) {
     console.error("Error loading or processing the prom event:", error);
   }
