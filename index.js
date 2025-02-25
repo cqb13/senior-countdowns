@@ -231,3 +231,28 @@ function calculateDaysOfWeekLeft(graduationEventStarts) {
     fridayCounter.textContent = "No more Fridays left!";
   }
 }
+
+async function loadSchoolDays() {
+  try {
+    const response = await fetch("/assets/data/school_days.json");
+    const schoolDays = await response.json();
+
+    const currentDate = new Date();
+
+    const daysLeft = schoolDays.filter((days) => {
+      const schoolDate = new Date(days.Starts);
+      return schoolDate > currentDate;
+    });
+
+    const schoolDayCounter = document.getElementById("school-day-count");
+    if (daysLeft.length > 0) {
+      schoolDayCounter.textContent = daysLeft.length + " More School Days";
+    } else {
+      schoolDayCounter.innerHTML = "<p>No more school days!</p>";
+    }
+  } catch (error) {
+    console.error("Error loading school days:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadSchoolDays);
