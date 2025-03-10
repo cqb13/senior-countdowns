@@ -27,6 +27,7 @@ header h2 {
 }
 
 /* Timer Layouts */
+#eod-days-container,
 #eod-days {
   display: none;
 }
