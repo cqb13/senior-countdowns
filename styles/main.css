@@ -27,6 +27,10 @@ header h2 {
 }
 
 /* Timer Layouts */
+#eod-days {
+  display: none;
+}
+
 .large-timer {
   display: flex;
   gap: clamp(1rem, 5vw, 10rem);

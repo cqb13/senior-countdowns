@@ -239,6 +239,60 @@ async function loadSchoolDays() {
 
     const currentDate = new Date();
 
+    let schoolDay = undefined;
+
+    // Hours in day
+    for (let i = 0; i < schoolDays.length; i++) {
+      let [year, month, day] = schoolDays[i].Starts.split("-").map(Number);
+      let schoolDate = new Date(year, month - 1, day);
+
+      if (
+        schoolDate.getFullYear() === currentDate.getFullYear() &&
+        schoolDate.getMonth() === currentDate.getMonth() &&
+        schoolDate.getDate() === currentDate.getDate()
+      ) {
+        schoolDay = schoolDate;
+        break;
+      }
+    }
+
+    if (schoolDay) {
+      let isEarlyRelease = false;
+      const calendar = await fetch("/assets/data/clean_calendar.json");
+      const calendarDays = calendar.json();
+      for (let i = 0; i < calendarDays.length; i++) {
+        let [year, month, day] = calendarDays[i].Starts.split("-").map(Number);
+        let calendarDay = new Date(year, month - 1, day);
+
+        if (
+          calendarDay.getFullYear() === schoolDay.getFullYear() &&
+          calendarDay.getMonth() === schoolDay.getMonth() &&
+          calendarDay.getDate() === schoolDay.getDate() &&
+          calendarDay[i].Title.toLowerCase().includes("early release")
+        ) {
+          isEarlyRelease = true;
+          break;
+        }
+      }
+
+      if (!isEarlyRelease) {
+        schoolDay.setHours(14);
+        schoolDay.setMinutes(20);
+      } else {
+        eodTitle.innerText = "Time Till Leave";
+        schoolDay.setHours(11);
+        schoolDay.setMinutes(40);
+      }
+
+      startCountdown(
+        schoolDay,
+        "eod-days",
+        "eod-hours",
+        "eod-minutes",
+        "eod-seconds",
+      );
+    }
+
     const daysLeft = schoolDays.filter((days) => {
       const schoolDate = new Date(days.Starts);
       return schoolDate > currentDate;
