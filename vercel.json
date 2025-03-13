@@ -1,0 +1,8 @@
+{
+  "headers": [
+    {
+      "source": "/schedule.html",
+      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+    }
+  ]
+}
