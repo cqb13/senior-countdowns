@@ -1,0 +1,45 @@
+{
+  "times": [
+    {
+      "start": "8:05",
+      "end": "8:37"
+    },
+    {
+      "start": "8:41",
+      "end": "9:13"
+    },
+    {
+      "start": "9:17",
+      "end": "9:49"
+    },
+    {
+      "start": "9:53",
+      "end": "10:28"
+    },
+    {
+      "start": "10:32",
+      "end": "11:04"
+    },
+    {
+      "start": "11:08",
+      "end": "11:40"
+    }
+  ],
+  "lunches": {
+    "first": {
+      "start": "--:--",
+      "end": "--:--"
+    },
+    "second": {
+      "start": "--:--",
+      "end": "--:--"
+    },
+    "third": {
+      "start": "--:--",
+      "end": "--:--"
+    }
+  },
+  "currentDay": "",
+  "currentPeriod": "",
+  "isHalfDay": false
+}

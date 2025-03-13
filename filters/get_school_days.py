@@ -33,7 +33,7 @@ def run():
         key=lambda event: datetime.strptime(event["Starts"].split(" ")[0], "%Y-%m-%d")
     )
 
-    with open("../assets/data/school_days.json", "w") as file:
+    with open("../assets/data/calendars/school_days.json", "w") as file:
         json.dump(school_days, file, indent=4)
 
     print("Filtered, sorted, and saved to school_days.json.")

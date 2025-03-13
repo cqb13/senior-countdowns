@@ -22,7 +22,7 @@ def run():
         key=lambda event: datetime.strptime(event["Starts"].split(" ")[0], "%Y-%m-%d")
     )
 
-    with open("../assets/data/latin_lunch_days.json", "w") as file:
+    with open("../assets/data/calendars/latin_lunch_days.json", "w") as file:
         json.dump(latin_lunch_days, file, indent=4)
 
     print("Filtered, sorted, and saved to latin_lunch_days.json.")

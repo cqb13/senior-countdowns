@@ -44,7 +44,7 @@ async function startCountdown(endDate, daysID, hoursID, minutesID, secondsID) {
 //TODO: rewrite this to remove need to pass in all id names
 async function loadCountdowns() {
   try {
-    const response = await fetch("/assets/data/clean_calendar.json");
+    const response = await fetch("/assets/data/calendars/clean_calendar.json");
     const calendarData = await response.json();
 
     // Graduation
@@ -157,7 +157,7 @@ async function loadCountdowns() {
 
     // Ivy Day
     startCountdown(
-      "2025-03-26 19:00:00+00:00",
+      "2025-03-27 19:00:00+00:00",
       "ivy-days",
       "ivy-hours",
       "ivy-minutes",
@@ -172,7 +172,9 @@ document.addEventListener("DOMContentLoaded", loadCountdowns);
 
 async function loadLatinLunches() {
   try {
-    const response = await fetch("/assets/data/latin_lunch_days.json");
+    const response = await fetch(
+      "/assets/data/calendars/latin_lunch_days.json",
+    );
     const lunches = await response.json();
 
     const currentDate = new Date();
@@ -234,12 +236,14 @@ function calculateDaysOfWeekLeft(graduationEventStarts) {
 
 async function loadSchoolDays() {
   try {
-    const response = await fetch("/assets/data/school_days.json");
+    const response = await fetch("/assets/data/calendars/school_days.json");
     const schoolDays = await response.json();
 
     const currentDate = new Date();
 
     let schoolDay = undefined;
+
+    let isEarlyRelease = false;
 
     // Hours in day
     for (let i = 0; i < schoolDays.length; i++) {
@@ -252,29 +256,14 @@ async function loadSchoolDays() {
         schoolDate.getDate() === currentDate.getDate()
       ) {
         schoolDay = schoolDate;
+        if (schoolDays[i].Title.toLowerCase().includes("early release")) {
+          isEarlyRelease = true;
+        }
         break;
       }
     }
 
     if (schoolDay) {
-      let isEarlyRelease = false;
-      const calendar = await fetch("/assets/data/clean_calendar.json");
-      const calendarDays = calendar.json();
-      for (let i = 0; i < calendarDays.length; i++) {
-        let [year, month, day] = calendarDays[i].Starts.split("-").map(Number);
-        let calendarDay = new Date(year, month - 1, day);
-
-        if (
-          calendarDay.getFullYear() === schoolDay.getFullYear() &&
-          calendarDay.getMonth() === schoolDay.getMonth() &&
-          calendarDay.getDate() === schoolDay.getDate() &&
-          calendarDay[i].Title.toLowerCase().includes("early release")
-        ) {
-          isEarlyRelease = true;
-          break;
-        }
-      }
-
       if (!isEarlyRelease) {
         schoolDay.setHours(14);
         schoolDay.setMinutes(20);
