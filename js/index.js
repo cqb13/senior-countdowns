@@ -157,7 +157,7 @@ async function loadCountdowns() {
 
     // Ivy Day
     startCountdown(
-      "2025-03-27 19:00:00+00:00",
+      "2025-03-27 19:00",
       "ivy-days",
       "ivy-hours",
       "ivy-minutes",
