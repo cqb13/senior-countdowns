@@ -1,5 +1,5 @@
 async function getSchedule() {
-  const response = await fetch("/assets/data/calendars/school_days.json");
+  const response = await fetch("/assets/data/calendars/clean_calendar.json");
   const schoolDays = await response.json();
 
   const currentDate = new Date();

@@ -239,6 +239,11 @@ async function loadSchoolDays() {
     const response = await fetch("/assets/data/calendars/school_days.json");
     const schoolDays = await response.json();
 
+    const calendarDaysRes = await fetch(
+      "/assets/data/calendars/clean_calendar.json",
+    );
+    const calendarDays = await calendarDaysRes.json();
+
     const currentDate = new Date();
 
     let schoolDay = undefined;
@@ -246,8 +251,8 @@ async function loadSchoolDays() {
     let isEarlyRelease = false;
 
     // Hours in day
-    for (let i = 0; i < schoolDays.length; i++) {
-      let [year, month, day] = schoolDays[i].Starts.split("-").map(Number);
+    for (let i = 0; i < calendarDays.length; i++) {
+      let [year, month, day] = calendarDays[i].Starts.split("-").map(Number);
       let schoolDate = new Date(year, month - 1, day);
 
       if (
@@ -256,7 +261,7 @@ async function loadSchoolDays() {
         schoolDate.getDate() === currentDate.getDate()
       ) {
         schoolDay = schoolDate;
-        if (schoolDays[i].Title.toLowerCase().includes("early release")) {
+        if (calendar[i].Title.toLowerCase().includes("early release")) {
           isEarlyRelease = true;
         }
         break;
